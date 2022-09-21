@@ -66,8 +66,10 @@ dogsRouter.post('/', async (req, res) => {
             life_span,
             image
         })
-        console.log('cree el perro');
-        const breed = await newBreed.addTemperament(temperaments)
+        const breedTemper = await Temperament.findAll({
+            where: {name : temperaments}
+        })
+        const breed = await newBreed.addTemperament(breedTemper)
         res.status(200).send(newBreed)
     } catch (error) {
         console.log(error);
