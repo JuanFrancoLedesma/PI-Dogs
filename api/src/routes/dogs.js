@@ -13,12 +13,11 @@ dogsRouter.use((req, res, next) => {
     next()
 })
 
-dogsRouter.get('/', async (req, res) => {
+dogsRouter.get('/', async (req, res, next) => {
     try {
         const breeds = await getAllBreeds()
         temperaments(breeds)
         const { name } = req.query
-        console.log(name);
         if (name) {
             const breedsFilter = filterByName(breeds, name)
             console.log(breedsFilter);
@@ -28,6 +27,7 @@ dogsRouter.get('/', async (req, res) => {
         return res.status(200).send(breeds)
 
     } catch (error) {
+        next(error)
         return res.status(400).send('Algo salio mal, estoy en /dogs')
     }
 
@@ -36,7 +36,6 @@ dogsRouter.get('/', async (req, res) => {
 dogsRouter.get('/:idRaza', async (req, res) => {
     try {
         const breeds = await getAllBreeds()
-
         const { idRaza } = req.params;
         const breed = filterById(breeds, idRaza)
         console.log(breed);
@@ -56,7 +55,6 @@ dogsRouter.post('/', async (req, res) => {
         image,
         temperaments
     } = req.body;
-
     if (!name || !height || !weight) return res.status(400).send('Faltan datos necesarios')
     try {
         const newBreed = await Dog.create({
@@ -64,15 +62,17 @@ dogsRouter.post('/', async (req, res) => {
             height,
             weight,
             life_span,
-            image
+            image,
         })
         const breedTemper = await Temperament.findAll({
             where: {name : temperaments}
         })
-        const breed = await newBreed.addTemperament(breedTemper)
+        await newBreed.addTemperament(breedTemper)
         res.status(200).send(newBreed)
+        // const dog = await Dog.findOne({ where: { name: newBreed.name }, include:{model : Temperament, 
+        // } })
+        // console.log(dog);
     } catch (error) {
-        console.log(error);
         res.status(400).send('Algo fallo, estoy en post a /dog')
     }
 })

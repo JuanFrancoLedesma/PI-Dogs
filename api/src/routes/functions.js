@@ -34,10 +34,35 @@ const formatApiBreed = (breeds) => {
     return breed
 }
 
+const formatDbBreed = (breeds) => {
+    const breed = breeds.map(e => {
+
+        let temp = ''
+        e.temperaments.forEach(e => {
+            if(!temp) temp+=e.name
+            else {
+                temp+=`, ${e.name}`
+            }
+        })
+        return{
+            id: e.id,
+            name: e.name,
+            height: e.height,
+            weight: e.weight,
+            life_span: e.life_span,
+            image: e.image,
+            temperament: temp,
+        }
+    })
+    return breed
+}
+
 const getAllBreeds = async () => {
     let dogsApi = await dogsFromApi()
     dogsApi = formatApiBreed(dogsApi) //le da la misma forma que mi base de datos
-    const dogsDb = await dogsFromDb()
+    let dogsDb = await dogsFromDb()
+    dogsDb = formatDbBreed(dogsDb)
+    // dogsDb.length && console.log(dogsDb[0].temperaments[0]?.name);
     const breeds = dogsApi.concat(dogsDb) //en un solo array tengo tanto las razas de la api como de la db
     return breeds
 }
