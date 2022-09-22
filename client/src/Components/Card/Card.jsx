@@ -7,11 +7,11 @@ export default function Card(props){
     return(
         <div>
             <h2>{name}</h2>
+            <img src={image} alt='No se encontro imagen perruna' width='200px' height='200px'/>
             <h3>{height}</h3>
             <h3>{weight}</h3>
             <h3>{life_span}</h3>
             <h3>{temperament}</h3>
-            <img src={image} alt='No se encontro imagen perruna' width='200px' height='200px'/>
         </div>
     )
 }
