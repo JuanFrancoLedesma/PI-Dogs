@@ -20,7 +20,6 @@ dogsRouter.get('/', async (req, res, next) => {
         const { name } = req.query
         if (name) {
             const breedsFilter = filterByName(breeds, name)
-            console.log(breedsFilter);
             if (!breedsFilter) return res.status(400).send('No se encontraron razas.')
             return res.status(200).json(breedsFilter)
         }

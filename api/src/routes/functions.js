@@ -25,6 +25,7 @@ const formatApiBreed = (breeds) => {
             name: e.name,
             height: e.height.metric,
             weight: e.weight.metric,
+            weightProm : (Number(e.height.metric.split(' ')[0])+Number(e.height.metric.split(' ')[2]))/2,
             life_span: e.life_span,
             image: e.image.url,
             temperament: e.temperament,
@@ -49,9 +50,11 @@ const formatDbBreed = (breeds) => {
             name: e.name,
             height: e.height,
             weight: e.weight,
+            weightProm : (Number(e.weight.split(' ')[0])+Number(e.weight.split(' ')[2]))/2,
             life_span: e.life_span,
             image: e.image,
             temperament: temp,
+            createdByUser: e.createdByUser
         }
     })
     return breed

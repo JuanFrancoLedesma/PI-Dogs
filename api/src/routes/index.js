@@ -5,6 +5,7 @@ const Router = require('express');
 const router = Router();
 const dogs = require('./dogs')
 const temperaments = require('./temperaments')
+// const filter = require('./filter')
 
 
 
@@ -15,6 +16,8 @@ router.use(Router.json())
 
 router.use('/dogs',dogs)
 router.use('/temperaments',temperaments)
+// router.use('/filter',filter)
+
 
 
 module.exports = router;
