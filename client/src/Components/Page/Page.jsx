@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default function Page({breedsPerPage,allBreeds,page}){
     const pageNumbers = []; //Aca me voy a ir guardando cada numero posible para el paginado
     
-    for (let i = 0; i <= Math.ceil(allBreeds/breedsPerPage); i++) { //Esto me guardara tantos numeros como sean necesarios para que todas las razas tengan su pagina y estas tengan el maximo permitido o disponible
+    for (let i = 0; i < Math.ceil(allBreeds/breedsPerPage); i++) { //Esto me guardara tantos numeros como sean necesarios para que todas las razas tengan su pagina y estas tengan el maximo permitido o disponible
         pageNumbers.push(i+1)
     }
 
