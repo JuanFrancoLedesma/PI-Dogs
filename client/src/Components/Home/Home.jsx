@@ -125,7 +125,7 @@ export default function Home() {
               height={e.height}
               weight={e.weight}
               life_span={e.life_span}
-              image={e.image}
+              image={e.image? e.image : 'https://img.freepik.com/foto-gratis/labrador-retriever_95678-27.jpg?w=2000'}
               temperament={e.temperament}
             />
           );

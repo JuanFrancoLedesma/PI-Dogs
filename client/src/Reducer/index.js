@@ -34,9 +34,11 @@ function rootReducer(state = initialState, action) {
         action.payload === "created"
           ? state.allBreeds.filter((b) => b.createdByUser)
           : state.allBreeds.filter((b) => !b.createdByUser);
+          console.log(state.breeds);
+          console.log(state.allBreeds);
       return {
         ...state,
-        breeds: action.payload === "all" ? state.allBreeds : filterBreeds,
+        breeds: action.payload === "all" ? state.breeds : filterBreeds,
       };
     }
     case FILTER_TEMPERAMENT:
