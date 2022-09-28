@@ -7,6 +7,8 @@ import {
   FILTER_TEMPERAMENT,
   FILTER_WEIGHT,
   FILTER_ALF,
+  GET_BREED_BY_ID,
+  WEIGHT_TEN,
 } from "./Action_type";
 
 export function getBreeds() {
@@ -43,6 +45,23 @@ export function getBreedsByName(name) {
   };
 }
 
+export function getBreedById(id){
+  return async function(dispatch) {
+    try{
+      const breed = await axios.get(`http://localhost:3001/dogs/${id}`)
+      return dispatch({
+        type: GET_BREED_BY_ID,
+        payload: breed.data
+      })
+    } catch(error){
+      return dispatch({
+        type: GET_BREED_BY_ID,
+        payload: error.response.data,
+      });
+    }
+  }
+}
+
 export function getTemperaments() {
   return async function (dispatch) {
     try {
@@ -62,31 +81,50 @@ export function getTemperaments() {
   };
 }
 
-export function filterByCreated(payload){
-  return{
+export function filterByCreated(payload) {
+  return {
     type: FILTER_CREATED,
-    payload
-  }
+    payload,
+  };
 }
 
-export function filterByTemperament(payload){
-  return{
+export function filterByTemperament(payload) {
+  return {
     type: FILTER_TEMPERAMENT,
-    payload
-  }
+    payload,
+  };
 }
 
-export function filterByWeight(payload){
-  return{
+export function filterByWeight(payload) {
+  return {
     type: FILTER_WEIGHT,
-    payload
-  }
+    payload,
+  };
 }
 
-export function filterByAlf(payload){
-  console.log('entre a la action');
-  return{
+export function filterByAlf(payload) {
+  return {
     type: FILTER_ALF,
+    payload,
+  };
+}
+
+export function breedCreate(payload) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("http://localhost:3001/dogs", payload);
+      alert('Functiono joya')
+      return response
+    } catch (error) {
+      alert(error)
+      return error
+    }
+  };
+}
+
+export function weightTen(payload){
+  return{
+    type: WEIGHT_TEN,
     payload
   }
 }

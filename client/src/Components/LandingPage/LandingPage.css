@@ -1,0 +1,27 @@
+.body {
+  display: block;
+  background-image: url("../../Images/fondo.jpg");
+  background-size: cover;
+  min-height: 100vh;
+  min-width: 100vh;
+}
+
+.button {
+  font-family: monospace;
+  font-size: 35px;
+  position: fixed;
+  top: 60vh;
+  right: 52vh;
+  border-radius: 3px;
+  background-color: rgb(250, 243, 243);
+  color: rgb(2, 46, 87);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(255, 150, 173);
+  outline: none;
+}
+
+.button:hover {
+  color: rgb(250, 243, 243);
+  background-color: rgb(2, 46, 87, 0.8);
+}

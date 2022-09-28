@@ -6,11 +6,15 @@ import {
   FILTER_TEMPERAMENT,
   FILTER_WEIGHT,
   FILTER_ALF,
+  BREED_CREATE,
+  GET_BREED_BY_ID,
+  WEIGHT_TEN,
 } from "../Actions/Action_type";
 
 const initialState = {
   breeds: [],
   allBreeds: [], //copia de seguridad
+  breed: [],
   temperaments: [],
   error: false,
 };
@@ -22,6 +26,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         breeds: action.payload,
         allBreeds: action.payload,
+        error: false
       };
     case GET_TEMPERAMENTS: {
       return {
@@ -34,8 +39,6 @@ function rootReducer(state = initialState, action) {
         action.payload === "created"
           ? state.allBreeds.filter((b) => b.createdByUser)
           : state.allBreeds.filter((b) => !b.createdByUser);
-          console.log(state.breeds);
-          console.log(state.allBreeds);
       return {
         ...state,
         breeds: action.payload === "all" ? state.breeds : filterBreeds,
@@ -96,6 +99,21 @@ function rootReducer(state = initialState, action) {
         error: false,
         breeds: action.payload,
       };
+      case GET_BREED_BY_ID:
+        return{
+          ...state,
+          breed : action.payload
+        }
+      case BREED_CREATE:
+        return {
+          ...state
+        }
+      case WEIGHT_TEN:
+        const filterByWeight = state.allBreeds.filter(b => b.weightProm>70)
+        return{
+          ...state,
+          breeds : filterByWeight
+        }  
     default:
       return {
         ...state,

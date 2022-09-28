@@ -1,7 +1,7 @@
 import react from "react";
 import { getBreedsByName } from "../../Actions";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export default function SearchBar() {
   function handleClick(e) {
     e.preventDefault();
     dispatch(getBreedsByName(input));
-    setInput('')
+    setInput("");
   }
 
   return (
