@@ -36,18 +36,6 @@ dogsRouter.get("/", async (req, res, next) => {
   }
 });
 
-dogsRouter.get("/weight", async (req, res) => {
-  try {
-    const allBreeds = await Dog.findAll({
-      where: { name: { [Op.startsWith]: `hu` } },
-    });
-    console.log("entre");
-    res.status(200).send(allBreeds);
-  } catch (error) {
-    console.log(error);
-    res.status(400).send("No pudimos");
-  }
-});
 
 dogsRouter.get("/:idRaza", async (req, res) => {
   try {
@@ -86,5 +74,17 @@ dogsRouter.post("/", async (req, res) => {
     res.status(400).send("Algo fallo, estoy en post a /dog");
   }
 });
+
+dogsRouter.delete('/delete/:id', async (req,res)=>{
+  const {id} = req.params;
+  try{
+    const deletedBreed = await Dog.findByPk(id)
+    await deletedBreed.destroy()
+    res.status(200).send('La raza se elimino correctamente')
+  } catch(error){
+    res.status(400).send('No se pudo eliminar la raza')
+  }
+
+})
 
 module.exports = dogsRouter;
