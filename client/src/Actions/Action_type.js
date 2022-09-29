@@ -7,5 +7,3 @@ export const FILTER_TEMPERAMENT = 'FILTER_TEMPERAMENT'
 export const FILTER_WEIGHT = 'FILTER_WEIGHT'
 export const FILTER_ALF = 'FILTER_ALF'
 export const BREED_CREATE = 'BREED_CREATE'
-
-export const WEIGHT_TEN = 'WEIGHT_TEN'

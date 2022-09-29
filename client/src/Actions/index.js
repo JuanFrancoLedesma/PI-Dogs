@@ -8,7 +8,6 @@ import {
   FILTER_WEIGHT,
   FILTER_ALF,
   GET_BREED_BY_ID,
-  WEIGHT_TEN,
 } from "./Action_type";
 
 export function getBreeds() {
@@ -122,9 +121,4 @@ export function breedCreate(payload) {
   };
 }
 
-export function weightTen(payload){
-  return{
-    type: WEIGHT_TEN,
-    payload
-  }
-}
+

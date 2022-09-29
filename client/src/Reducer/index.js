@@ -8,7 +8,6 @@ import {
   FILTER_ALF,
   BREED_CREATE,
   GET_BREED_BY_ID,
-  WEIGHT_TEN,
 } from "../Actions/Action_type";
 
 const initialState = {
@@ -108,12 +107,6 @@ function rootReducer(state = initialState, action) {
         return {
           ...state
         }
-      case WEIGHT_TEN:
-        const filterByWeight = state.allBreeds.filter(b => b.weightProm>70)
-        return{
-          ...state,
-          breeds : filterByWeight
-        }  
     default:
       return {
         ...state,

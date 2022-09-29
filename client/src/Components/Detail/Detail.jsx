@@ -3,7 +3,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBreedById } from "../../Actions";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Card from "../Card/Card";
+import './Detail.css'
 
 export default function Breed() {
   const { id } = useParams();
@@ -16,7 +18,13 @@ export default function Breed() {
   },[])
   const breed = useSelector((state) => state.breed);
   return (
-    <div>
+    <div className="detailContainer">
+      <div className="detailbtn">
+        <Link to="/home">
+          <button>Home</button>
+        </Link>
+      </div>
+      <div className="card">
       <Card
         name={breed.name}
         height={breed.height}
@@ -29,6 +37,7 @@ export default function Breed() {
         }
         temperament={breed.temperament}
       />
+      </div>
     </div>
   );
 }

@@ -43,7 +43,8 @@ export default function BreedCreate() {
 
   function handleSelect(e) {
     if (e.target.value === "default") return setInput({ ...input });
-    if(input.temperaments.includes(e.target.value)) return setInput({ ...input })
+    if (input.temperaments.includes(e.target.value))
+      return setInput({ ...input });
     setInput(() => {
       return {
         ...input,
@@ -94,11 +95,12 @@ export default function BreedCreate() {
     life_spanm = Number(life_spanm);
     life_spanM = Number(life_spanM);
     //Nombre
-    if(!name) errors.name = 'Ingresa el nombre!';
-    else if (!/[a-zA-Z]+/.test(name)) errors.name = 'Solo letras!'
+    if (!name) errors.name = "Ingresa el nombre!";
+    else if (!/[a-zA-Z]+/.test(name)) errors.name = "Solo letras!";
     //Altura
     if (!heightm || !heightM) errors.height = "Ingresa las alturas!";
-    else if (/[[a-zA-Z]+]+/.test(heightm) || /[[a-zA-Z]+]+/.test(heightM)) errors.height = 'Solo números!'
+    else if (/[[a-zA-Z]+]+/.test(heightm) || /[[a-zA-Z]+]+/.test(heightM))
+      errors.height = "Solo números!";
     else if (heightm === heightM)
       errors.height = "Las alturas minimas y maximas deben ser diferentes";
     else if (heightm > heightM)
@@ -109,10 +111,11 @@ export default function BreedCreate() {
       errors.weight = "Los pesos minimos y maximos deben ser diferentes";
     else if (weightm > weightM)
       errors.weight = "El peso minimo debe ser menor que el maximo";
-      else if (/[a-zA-Z]+]+/.test(weightm) || /[[a-zA-Z]+]+/.test(weightM)) errors.weight = 'Solo números!'
+    else if (/[a-zA-Z]+]+/.test(weightm) || /[[a-zA-Z]+]+/.test(weightM))
+      errors.weight = "Solo números!";
     //Esperanza de vida
     if (!life_spanm || !life_spanM)
-      errors.life_span = "Ingresa los años de vida!";
+      errors.life_span = "Ingresa los años de vida!(Opcional)";
     else if (life_spanm === life_spanM)
       errors.life_span =
         "Los años de vida minimos y maximos deben ser diferentes";
@@ -165,6 +168,7 @@ export default function BreedCreate() {
           <div className="entrada">
             <label>Nombre: </label>
             <input
+              className="inputsimple"
               type="text"
               name="name"
               value={input.value}
@@ -179,6 +183,7 @@ export default function BreedCreate() {
           <div className="entrada">
             <label>Altura: </label>
             <input
+              className="inputdoble"
               type="number"
               max="110"
               min="7"
@@ -189,6 +194,7 @@ export default function BreedCreate() {
               required
             />
             <input
+              className="inputdoble"
               type="number"
               max="110"
               min="7"
@@ -203,6 +209,7 @@ export default function BreedCreate() {
           <div className="entrada">
             <label>Peso: </label>
             <input
+              className="inputdoble"
               type="number"
               max="200"
               min="1"
@@ -213,6 +220,7 @@ export default function BreedCreate() {
               required
             />
             <input
+              className="inputdoble"
               type="number"
               max="200"
               min="1"
@@ -227,6 +235,7 @@ export default function BreedCreate() {
           <div className="entrada">
             <label>Esperanza de vida: </label>
             <input
+              className="inputdoble"
               type="number"
               max="30"
               min="1"
@@ -236,6 +245,7 @@ export default function BreedCreate() {
               onChange={(e) => handleInput(e)}
             />
             <input
+              className="inputdoble"
               type="number"
               max="200"
               min="1"
@@ -245,10 +255,13 @@ export default function BreedCreate() {
               onChange={(e) => handleInput(e)}
             />
           </div>
-          <div className="error">{error.life_span && <p>{error.life_span}</p>}</div>
+          <div className="error">
+            {error.life_span && <p>{error.life_span}</p>}
+          </div>
           <div className="entrada">
             <label>Imagen del canino: </label>
             <input
+              className="inputsimple"
               type="url"
               name="image"
               value={input.image}
@@ -284,40 +297,42 @@ export default function BreedCreate() {
               })}
             </select>
           </div>
-          <div>
-            {error.temperaments && <p>{error.temperaments}</p>}
-            {input.temperaments?.map((temperament, index) => {
-              return (
-                <div key={index}>
-                  <label>{temperament} </label>
-                  <button
-                    name="temperaments"
-                    value={temperament}
-                    onClick={(e) => handleDelete(e)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-          <div>
-            <button
-              disabled={
-                !input.name ||
-                !input.heightM ||
-                !input.heightm ||
-                !input.weightm ||
-                !input.weightM ||
-                !input.temperaments.length ||
-                error.name ||
-                error.height ||
-                error.weight 
-              }
-              onClick={(e) => handleSubmit(e)}
-            >
-              Submit
-            </button>
+          <div className="temperament_submit">
+            <div className="temperamentError">
+              {error.temperaments && <p>{error.temperaments}</p>}
+              {input.temperaments?.map((temperament, index) => {
+                return (
+                  <div key={index} className='linea'>
+                    <label>{temperament} </label>
+                    <button
+                      name="temperaments"
+                      value={temperament}
+                      onClick={(e) => handleDelete(e)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="submitbtn">
+              <button
+                disabled={
+                  !input.name ||
+                  !input.heightM ||
+                  !input.heightm ||
+                  !input.weightm ||
+                  !input.weightM ||
+                  !input.temperaments.length ||
+                  error.name ||
+                  error.height ||
+                  error.weight
+                }
+                onClick={(e) => handleSubmit(e)}
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </form>
       </div>

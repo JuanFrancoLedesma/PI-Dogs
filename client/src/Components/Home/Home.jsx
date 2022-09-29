@@ -8,7 +8,6 @@ import {
   filterByTemperament,
   filterByWeight,
   filterByAlf,
-  weightTen,
 } from "../../Actions"; //Traigo la action creator
 import { Link } from "react-router-dom";
 import Page from "../Page/Page";
@@ -26,10 +25,9 @@ export default function Home() {
     dispatch(getTemperaments());
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(allBreeds);
-  },[allBreeds]
-  )
+  }, [allBreeds]);
 
   const [orden, setOrden] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -76,27 +74,24 @@ export default function Home() {
     setOrden(`Ordenado ${e.target.value}`);
   }
 
-  function handleWeightClick(e){
-    e.preventDefault()
-    dispatch(weightTen())
-    setOrden(`Ordenado ${e.target.value}`);
-  }
-
   return (
     <div className="container">
       <div className="encabezado">
         <div className="tittle">
-          <h1>Henry dogs</h1>
+          <h1>Henry Dogs</h1>
         </div>
         <div className="search">
           <Link to="/breedCreate">
             <button>Crear raza</button>
-          </Link>                                                            
-            <SearchBar />
+          </Link>
+          <SearchBar page={page} />
         </div>
       </div>
       <div className="cuerpo">
         <div className="filtros">
+          <div className="subtitulo">
+            <h2>Filtrado</h2>
+          </div>
           {/* Filtro por temperamentos */}
           <div>
             <select onChange={(e) => handleTemperamentFilter(e)}>
@@ -119,6 +114,9 @@ export default function Home() {
             </select>
             <i></i>
           </div>
+          <div className="subtitulo">
+            <h2>Ordenado</h2>
+          </div>
           <div>
             {/* Filtro por peso */}
             <select onChange={(e) => handleWeightFilter(e)}>
@@ -138,11 +136,7 @@ export default function Home() {
           <button onClick={(e) => handleClick(e)}>
             Volver a cargar todas las razas
           </button>
-          <button onClick={(e)=>handleWeightClick(e)} >
-            Peso mayor a 10
-          </button>
         </div>
-
         <div className="muestra">
           <div className="tarjetas">
             {error && showError(error)}
@@ -150,21 +144,17 @@ export default function Home() {
               //renderizado condicional
               return (
                 <div className="breed">
-                  <div className="image">
-                    <img
-                      src={
-                        e.image
-                          ? e.image
-                          : "https://img.freepik.com/foto-gratis/labrador-retriever_95678-27.jpg?w=2000"
-                      }
-                      width="200px"
-                      height="200px"
-                    />
-                  </div>
+                  <img src={e.image} width="150px" height="150px" />
                   <div className="texto">
-                    <Link key={e.id} to={`/detail/${e.id}`}>
-                      <h3>{e.name}</h3>
-                    </Link>
+                    <div className="link">
+                      <Link
+                        className="linkedin"
+                        key={e.id}
+                        to={`/detail/${e.id}`}
+                      >
+                        <h3>{e.name}</h3>
+                      </Link>
+                    </div>
                     <h3>{e.temperament}</h3>
                   </div>
                 </div>

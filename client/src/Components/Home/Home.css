@@ -1,192 +1,214 @@
-.container{
-   background-color: aqua; 
+.container {
+  background: url("../../Images/perroBlanco.png");
+  background-size: cover;
 }
-.encabezado{
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.tittle{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content:flex-start;
-    padding-left: 10px;
-    background-color: white;
-    margin-left: 20px;
-    width: 50%;
-    height: 100%;
-    
+.encabezado {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 12vh;
 }
 
-.tittle h1{
-    font-family: 
-	'Quicksand', sans-serif;
-    color: rgba(0, 0, 255, 0.678);
-    text-align: left; 
-font-family: Comic Sans MS; 
-font-weight:bold; 
-font-size: 30px; 
-color: #EBD758; 
-text-shadow: -1px 0 #414D68, 0 1px #414D68, 1px 0 #414D68, 0 -1px #414D68, -2px 2px 0 #414D68, 2px 2px 0 #414D68, 1px 1px #414D68, 2px 2px #414D68, 3px 3px #414D68, 4px 4px #414D68, 5px 5px #414D68;
+.tittle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 10px;
+  margin-left: 20px;
+  width: 50%;
+  height: 100%;
 }
 
-.tittle img{
-    height: 60px;
-    width: 60px;
+.tittle h1 {
+  font-family: "Quicksand", sans-serif;
+  color: rgba(0, 0, 255, 0.678);
+  text-align: left;
+  font-family: Comic Sans MS;
+  font-weight: bold;
+  font-size: 35px;
+  color: #ebd758;
+  text-shadow: -1px 0 #414d68, 0 1px #414d68, 1px 0 #414d68, 0 -1px #414d68,
+    -2px 2px 0 #414d68, 2px 2px 0 #414d68, 1px 1px #414d68, 2px 2px #414d68,
+    3px 3px #414d68, 4px 4px #414d68, 5px 5px #414d68;
 }
 
-.search{
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-around;
-    margin-right: 50px;
-    width: 30%;
-    height: 79px;
+.tittle img {
+  height: 60px;
+  width: 60px;
 }
 
-.search button{
-    height: 30px;
-    width: 100px;
-    margin-right: 10px;
-    background-color: f0f0f0;
-    border: 2px solid rgba(0,0,0,0.2);;
-    border-radius: 12px;
-    font-family: 
-	'Quicksand', sans-serif;
-    font-size: 1em;
-    transition: all 0.25s ease;
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  margin-right: 30px;
+  width: 50%;
+  height: 79px;
 }
 
-.search button:hover{
-    background: rgba(0, 0, 255, 0.226);
+.search button {
+  height: 30px;
+  width: 100px;
+  margin-right: 10px;
+  background-color: f0f0f0;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1em;
+  transition: all 0.25s ease;
 }
 
-.search input{
-    border: 0px;
-    border-radius: 12px;
-    height: 30px;
-    width: 300px;
-    background-color: rgba(0, 0, 255, 0.226);
-    padding-left: 10px;
-    margin-right: 5px;
-    font-family: 
-	'Quicksand', sans-serif;
-    font-size: 20px;
+.search button:hover {
+  background: rgba(0, 0, 255, 0.226);
 }
 
-.search input:active{
-
+.search input {
+  border: 0px;
+  border-radius: 12px;
+  height: 30px;
+  width: 300px;
+  background-color: rgba(0, 0, 255, 0.226);
+  padding-left: 10px;
+  margin-right: 5px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
 }
 
-.cuerpo{
-    background-color: blue;
-    display: flex;
+.search input:active {
 }
 
-.filtros{
-    background-color: white;
-    min-width: 300px;
-    
-}
-.filtros select{
-    display: inline-block;
-	width: 100%;
-	cursor: pointer;
-  	padding: 7px 10px;
-  	height: 42px;
-	border-radius: 0;
-	background: #f0f0f0;
-	font-size: 1em;
-	color: rgb(70, 69, 69);
-	font-family: 
-	'Quicksand', sans-serif;
-	border:2px solid rgba(0,0,0,0.2);
-    border-radius: 12px;
-    position: relative;
-    transition: all 0.25s ease;
+.cuerpo {
+  display: flex;
+  height: 100%;
 }
 
-.filtros select:hover{
-    background: rgba(0, 0, 255, 0.226);
+.filtros {
+  min-width: 20%;
+  padding-left: 10px;
+  padding-right: 20px;
+}
+.filtros select {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+  padding: 7px 10px;
+  height: 42px;
+  border-radius: 0;
+  background: #f0f0f0;
+  font-size: 1em;
+  color: rgb(70, 69, 69);
+  font-family: "Quicksand", sans-serif;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.25s ease;
 }
 
-
-
-.filtros button{
-    margin-top: 50px;
-    background-color: f0f0f0;
-    border: 2px solid rgba(0,0,0,0.2);;
-    border-radius: 12px;
-    width: 100%;
-    height: 42px;
-    font-family: 
-	'Quicksand', sans-serif;
-    font-size: 1em;
-    transition: all 0.25s ease;
+.filtros select:hover {
+  background: rgba(0, 0, 255, 0.226);
 }
 
-.filtros button:hover{
-    background: rgba(0, 0, 255, 0.226);
+.filtros button {
+  margin-top: 50px;
+  background-color: f0f0f0;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  width: 100%;
+  height: 42px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1em;
+  transition: all 0.25s ease;
 }
 
-.filtros button:active{
-    box-shadow: 0px 0px 3px black inset;
+.filtros button:hover {
+  background: rgba(0, 0, 255, 0.226);
 }
 
-.muestra{
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-
+.filtros button:active {
+  box-shadow: 0px 0px 3px black inset;
 }
 
-.tarjetas{
-    background-color: white;
-    display: flex;
-    min-height: 655px;
-    min-width: 1387px;
-    flex-wrap: wrap;
-    padding: 10px;
-    gap: 10px;
-    /* width: 70%; */
-
+.muestra {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 100vh;
 }
 
-.breed{
-    /* background-color: pink; */
-    width: 320px;
-    height: 320px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content:flex-end;
-    border: 1px solid black;
-    border-radius: 25px;
-
+.tarjetas {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 10px;
+  /* width: 70%; */
 }
 
-.image{
-    width: 200px;
-    height: 200px;
-    margin-bottom: 30px;
+.breed {
+  background-color: white;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  border-radius: 25px;
+  transition: all 0.25s ease;
+}
+margin
+
+.imgBreed {
+  max-width: 130px;
+  max-height: 130px;
+  border-radius: 12px;
 }
 
-.texto{
-    background-color: red;
-    height: 80px;
-    width: 100%;
-    font-size: 10px;
-    border-radius: 25px;
+.texto {
+  background-color: rgba(0, 0, 255, 0.226);
+  margin-top: 5px;
+  height: 80px;
+  width: 100%;
+  font-size: 10px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  transition: all 0.25s ease;
 }
 
-.page{
-    background-color: white;
-    
+.text:hover {
+  background-color: rgba(0, 0, 255, 0.226);
+  height: 90px;
+}
+
+.texto h3 {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.linkedin{
+  text-decoration: none;
+}
+
+.link h3 {
+  color: rgb(62, 62, 221);
+  font-size: 14px;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.link h3:hover {
+  color: blue;
+  background: rgba(255, 255, 255, 0.226);
+}
+
+.link h3:active {
+  color: red;
 }
