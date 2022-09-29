@@ -8,6 +8,7 @@ import {
   FILTER_WEIGHT,
   FILTER_ALF,
   GET_BREED_BY_ID,
+  BREED_DELETE,
 } from "./Action_type";
 
 export function getBreeds() {
@@ -112,13 +113,27 @@ export function breedCreate(payload) {
   return async function (dispatch) {
     try {
       const response = await axios.post("http://localhost:3001/dogs", payload);
-      alert('Functiono joya')
+      alert('Raza creada exitosamente!')
       return response
     } catch (error) {
-      alert(error)
+      alert(`Algo fallo con el siguiente error: `,error)
       return error
     }
   };
+}
+
+export function breedDelete(id) {
+  return async function(dispatch) {
+    try{
+      const response = await axios.delete("http://localhost:3001/dogs/delete"+'/'+id); //Esto elimina la raza de la base de datos, puff, ya no esta mas
+      alert('Raza eliminada correctamente!')
+      return{
+        type: BREED_DELETE
+      }
+    } catch(error){
+      alert('No se pudo eliminar la raza!')
+    }
+  }
 }
 
 

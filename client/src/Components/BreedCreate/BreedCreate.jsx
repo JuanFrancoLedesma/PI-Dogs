@@ -2,11 +2,12 @@ import react from "react";
 import { useState, useEffect } from "react"; //Manejar estado interno y ciclo de vida
 import { useDispatch, useSelector } from "react-redux"; //Manejar estado global, traer estado y enviar acciones
 import { breedCreate, getTemperaments } from "../../Actions"; //Traigo la action creator
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./BreedCreate.css";
 
 export default function BreedCreate() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getTemperaments());
@@ -51,7 +52,6 @@ export default function BreedCreate() {
         temperaments: [...input.temperaments, e.target.value],
       };
     });
-    console.log(input);
     setError(
       validate({
         ...input,
@@ -149,6 +149,7 @@ export default function BreedCreate() {
       image: "",
       temperaments: [],
     });
+    history.push('/home')
   }
 
   return (

@@ -52,10 +52,12 @@ export default function Home() {
 
   function handleCreatedFilter(e) {
     dispatch(filterByCreated(e.target.value));
+    setCurrentPage(1);
   }
 
   function handleTemperamentFilter(e) {
     dispatch(filterByTemperament(e.target.value));
+    setCurrentPage(1);
   }
 
   function handleWeightFilter(e) {
@@ -144,7 +146,15 @@ export default function Home() {
               //renderizado condicional
               return (
                 <div className="breed">
-                  <img src={e.image} width="150px" height="150px" />
+                  <img
+                    src={
+                      e.image
+                        ? e.image
+                        : "https://img.freepik.com/foto-gratis/labrador-retriever_95678-27.jpg?w=2000"
+                    }
+                    width="150px"
+                    height="150px"
+                  />
                   <div className="texto">
                     <div className="link">
                       <Link

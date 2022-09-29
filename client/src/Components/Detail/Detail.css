@@ -30,3 +30,24 @@
 .card {
   margin-left: 250px;
 }
+
+.card button{
+  height: 30px;
+  width: 100px;
+  margin-right: 10px;
+  background-color: f0f0f0;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1em;
+  transition: all 0.25s ease;
+}
+
+.card button:hover{
+  background: rgba(219, 0, 0, 0.877);
+  color: white;
+}
+
+.card button:active{
+  box-shadow: 0px 0px 3px black inset;
+}

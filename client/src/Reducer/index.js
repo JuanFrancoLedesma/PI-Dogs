@@ -8,6 +8,7 @@ import {
   FILTER_ALF,
   BREED_CREATE,
   GET_BREED_BY_ID,
+  BREED_DELETE,
 } from "../Actions/Action_type";
 
 const initialState = {
@@ -25,7 +26,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         breeds: action.payload,
         allBreeds: action.payload,
-        error: false
+        error: false,
       };
     case GET_TEMPERAMENTS: {
       return {
@@ -38,9 +39,18 @@ function rootReducer(state = initialState, action) {
         action.payload === "created"
           ? state.allBreeds.filter((b) => b.createdByUser)
           : state.allBreeds.filter((b) => !b.createdByUser);
+      if (filterBreeds.lenght === 0) {
+        alert("No se encontraron razas!");
+        return {
+          ...state,
+          breeds: state.allBreeds,
+        };
+      }
+
       return {
         ...state,
         breeds: action.payload === "all" ? state.breeds : filterBreeds,
+        error:false
       };
     }
     case FILTER_TEMPERAMENT:
@@ -50,6 +60,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         breeds: action.payload === "all" ? state.allBreeds : filterBreeds,
+        error:false
       };
     case FILTER_WEIGHT:
       let sortedArr =
@@ -67,6 +78,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         breeds: action.payload === "all" ? state.allBreeds : sortedArr,
+        error:false
       };
     case FILTER_ALF:
       let sortArr =
@@ -84,6 +96,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         breeds: action.payload === "all" ? state.allBreeds : sortArr,
+        error:false
       };
     case GET_BREEDS_BY_NAME:
       if (typeof action.payload === "string") {
@@ -98,15 +111,20 @@ function rootReducer(state = initialState, action) {
         error: false,
         breeds: action.payload,
       };
-      case GET_BREED_BY_ID:
-        return{
-          ...state,
-          breed : action.payload
-        }
-      case BREED_CREATE:
-        return {
-          ...state
-        }
+    case GET_BREED_BY_ID:
+      return {
+        ...state,
+        breed: action.payload,
+        error:false
+      };
+    case BREED_CREATE:
+      return {
+        ...state,
+      };
+    case BREED_DELETE:
+      return {
+        ...state,
+      };
     default:
       return {
         ...state,
