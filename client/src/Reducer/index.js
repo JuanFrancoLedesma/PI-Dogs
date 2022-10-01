@@ -35,32 +35,27 @@ function rootReducer(state = initialState, action) {
       };
     }
     case FILTER_CREATED: {
+      if (action.payload === "default") return { ...state };
       const filterBreeds = //Aca me guardo las razas filtradas segun el estado actual de mi filtro
         action.payload === "created"
           ? state.allBreeds.filter((b) => b.createdByUser)
           : state.allBreeds.filter((b) => !b.createdByUser);
-      if (filterBreeds.lenght === 0) {
-        alert("No se encontraron razas!");
-        return {
-          ...state,
-          breeds: state.allBreeds,
-        };
-      }
 
       return {
         ...state,
-        breeds: action.payload === "all" ? state.breeds : filterBreeds,
-        error:false
+        breeds: action.payload === "all" ? state.allBreeds : filterBreeds,
+        error: false,
       };
     }
     case FILTER_TEMPERAMENT:
+      if (action.payload === "default") return { ...state };
       const filterBreeds = state.allBreeds.filter((b) =>
         b.temperament?.includes(action.payload)
       );
       return {
         ...state,
         breeds: action.payload === "all" ? state.allBreeds : filterBreeds,
-        error:false
+        error: false,
       };
     case FILTER_WEIGHT:
       let sortedArr =
@@ -78,7 +73,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         breeds: action.payload === "all" ? state.allBreeds : sortedArr,
-        error:false
+        error: false,
       };
     case FILTER_ALF:
       let sortArr =
@@ -96,7 +91,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         breeds: action.payload === "all" ? state.allBreeds : sortArr,
-        error:false
+        error: false,
       };
     case GET_BREEDS_BY_NAME:
       if (typeof action.payload === "string") {
@@ -115,7 +110,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         breed: action.payload,
-        error:false
+        error: false,
       };
     case BREED_CREATE:
       return {

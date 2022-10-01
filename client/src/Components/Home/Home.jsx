@@ -17,19 +17,17 @@ import "./Home.css";
 export default function Home() {
   const dispatch = useDispatch(); //Me permite utilizar dispatch
   const allBreeds = useSelector((state) => state.breeds); //Me traigo del estado global el array breeds. Reemplaza el mapStateToProps
-  const error = useSelector((state) => state.error);
+  const error = useSelector((state) => state.error); 
   const allTemperaments = useSelector((state) => state.temperaments); //Me traigo del estado global mi array de temperamentos
+  const [orden, setOrden] = useState(""); //Estado que sirve para que el useEFfect vuelva a renderizar 
 
   useEffect(() => {
     dispatch(getBreeds()); //reemplaza el mapDispatchToProps. En cuanto renderice el componente, se despacha la action que llena mi estado global. El cual me traje con las lineas de arriba.
     dispatch(getTemperaments());
   }, []);
 
-  useEffect(() => {
-    console.log(allBreeds);
-  }, [allBreeds]);
 
-  const [orden, setOrden] = useState("");
+
   const [currentPage, setCurrentPage] = useState(1);
   const [breedsPerPage, setBreedsPerPage] = useState(8);
   const indexLastBreed = currentPage * breedsPerPage; //8 : indice de la novena raza
@@ -47,6 +45,7 @@ export default function Home() {
   }
 
   function showError(error) {
+    //Muestra error
     return <h1>{error}</h1>;
   }
 
@@ -97,7 +96,8 @@ export default function Home() {
           {/* Filtro por temperamentos */}
           <div>
             <select onChange={(e) => handleTemperamentFilter(e)}>
-              <option value="all">Temperamentos</option>
+              <option value='default'>Temperamentos</option>
+              <option value="all">Todos</option>
               {allTemperaments?.map((t, i) => {
                 return (
                   <option value={t} key={i}>
@@ -110,9 +110,10 @@ export default function Home() {
           <div>
             {/* Filtro por creacion */}
             <select onChange={(e) => handleCreatedFilter(e)}>
-              <option value="all">Origen</option>
-              <option value="created">Created by user</option>
-              <option value="api">Api</option>
+              <option key='0' value='default'>Origen</option>
+              <option key='1' value="all">All</option>
+              <option key='2' value="created">Created by user</option>
+              <option key='3' value="api">Api</option>
             </select>
             <i></i>
           </div>
@@ -122,17 +123,17 @@ export default function Home() {
           <div>
             {/* Filtro por peso */}
             <select onChange={(e) => handleWeightFilter(e)}>
-              <option value="all">Peso</option>
-              <option value="asc">Ascendente</option>
-              <option value="desc">Descendente</option>
+              <option key='4' value="all">Peso</option>
+              <option key='5' value="asc">Ascendente</option>
+              <option key='6' value="desc">Descendente</option>
             </select>
           </div>
           <div>
             {/* Filtro alfabetico */}
             <select onChange={(e) => handleAlfFilter(e)}>
-              <option value="all">Alfabeticamente</option>
-              <option value="AZ">A-Z</option>
-              <option value="ZA">Z-A</option>
+              <option key='7' value="all">Alfabeticamente</option>
+              <option key='8' value="AZ">A-Z</option>
+              <option key='9' value="ZA">Z-A</option>
             </select>
           </div>
           <button onClick={(e) => handleClick(e)}>
@@ -141,6 +142,7 @@ export default function Home() {
         </div>
         <div className="muestra">
           <div className="tarjetas">
+            {console.log('estado de error: ',error)}
             {error && showError(error)}
             {currentBreeds?.map((e) => {
               //renderizado condicional
