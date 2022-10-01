@@ -16,7 +16,6 @@ router.use(Router.json())
 
 router.use('/dogs',dogs)
 router.use('/temperaments',temperaments)
-// router.use('/filter',filter)
 
 
 

@@ -14,15 +14,15 @@ temperamentRouter.use((req, res, next) => {
 
 temperamentRouter.get('/', async (req, res) => {
     try {
-        const temperDb = await Temperament.findAll();
+        const temperDb = await Temperament.findAll(); //Intento traer temperamentos desde la db
         if(temperDb.length>0){
             const temperaments = temperDb.map(e => e.name)
-            return res.status(200).send(temperaments)
+            return res.status(200).send(temperaments) // si ya estan cargados los devuelvo desde ahi
         }
-        const breeds = await getAllBreeds();
-        const temper = await temperaments(breeds)
-        if(temper) return res.status(200).send(temper)
-        return res.status(404).send('no se que onda')
+        const breeds = await getAllBreeds(); //Sino me traigo todas las razas
+        const temper = await temperaments(breeds) //Uso funcion que me consigue un array de los temperamentos disponibles
+        if(temper) return res.status(200).send(temper) //Los devuelvo
+        return res.status(404).send('Algo fallo')
     } catch (error) {
         console.log(error);
         res.status(400).send('Algo fallo, estoy en get a temperaments')

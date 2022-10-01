@@ -27,17 +27,18 @@ const formatApiBreed = (breeds) => {
             weight: `${e.weight.metric} kg`,
             weightProm : (Number(e.height.metric.split(' ')[0])+Number(e.height.metric.split(' ')[2]))/2,
             life_span: e.life_span,
-            image: e.image.url,
+            // image: e.image.url,
             temperament: e.temperament,
             createdByUser: false
         }
     })
+    console.log(breed);
     return breed
 }
 
 const formatDbBreed = (breeds) => {
+    if(!breeds.length) return
     const breed = breeds.map(e => {
-
         let temp = ''
         e.temperaments.forEach(e => {
             if(!temp) temp+=e.name
@@ -112,5 +113,6 @@ module.exports = {
     getAllBreeds,
     filterByName,
     filterById,
-    temperaments
+    temperaments,
+    formatDbBreed
 }
