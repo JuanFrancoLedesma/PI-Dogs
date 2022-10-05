@@ -27,12 +27,12 @@ const formatApiBreed = (breeds) => {
             weight: `${e.weight.metric} kg`,
             weightProm : (Number(e.height.metric.split(' ')[0])+Number(e.height.metric.split(' ')[2]))/2,
             life_span: e.life_span,
-            // image: e.image.url,
+            image: e.image.url,
             temperament: e.temperament,
-            createdByUser: false
+            createdByUser: false,
+            password : false
         }
     })
-    console.log(breed);
     return breed
 }
 
@@ -55,18 +55,24 @@ const formatDbBreed = (breeds) => {
             life_span: `${e.life_span} years`,
             image: e.image,
             temperament: temp,
-            createdByUser: e.createdByUser
+            createdByUser: e.createdByUser,
+            password: e.password
         }
     })
     return breed
+}
+
+const getDbBreedsOnly = async () => {
+    let breeds = await dogsFromDb();
+    breeds = formatDbBreed(breeds)
+    return breeds
 }
 
 const getAllBreeds = async () => {
     let dogsApi = await dogsFromApi()
     dogsApi = formatApiBreed(dogsApi) //le da la misma forma que mi base de datos
     let dogsDb = await dogsFromDb()
-    dogsDb = formatDbBreed(dogsDb)
-    // dogsDb.length && console.log(dogsDb[0].temperaments[0]?.name);
+    dogsDb = dogsDb.length? formatDbBreed(dogsDb) : [];
     const breeds = dogsApi.concat(dogsDb) //en un solo array tengo tanto las razas de la api como de la db
     return breeds
 }
@@ -114,5 +120,6 @@ module.exports = {
     filterByName,
     filterById,
     temperaments,
-    formatDbBreed
+    formatDbBreed,
+    getDbBreedsOnly
 }

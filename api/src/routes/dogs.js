@@ -8,7 +8,9 @@ const {
   filterById,
   temperaments,
   formatApiBreed,
-  formatDbBreed
+  formatDbBreed,
+  dogsFromDb,
+  getDbBreedsOnly,
 } = require("./functions");
 const { default: axios } = require("axios");
 
@@ -39,36 +41,6 @@ dogsRouter.get("/", async (req, res, next) => {
   }
 });
 
-// dogsRouter.get("/", async (req, res) => {
-//   const {name} = req.query
-//   try{
-//     if(name){
-//       const apiBreeds = await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${name}`)
-//       const apiFormat = formatApiBreed(apiBreeds.data)
-//       return res.send(apiFormat)
-//       const dbBreeds = await Dog.findAll({
-//         where: {name:{[Op.like]: `%${name}%`}},
-//         include: {
-//           model: Temperament,
-//           attributes: ['name'],
-//           through: {
-//               attributes: [],
-//           }
-//       }
-//     })
-//     // const apiFormat = formatApiBreed(apiBreeds.data)
-//     const dbFormat = formatDbBreed(dbBreeds)
-//     return res.status(200).send(apiBreeds.data.concat(dbFormat))
-//     }
-//     const breeds = await getAllBreeds()
-//     res.status(200).send(breeds)
-//   } catch(error){
-//     res.status(400).send('No se encontraron razas')
-//   }
-//   })
-
-
-
 dogsRouter.get("/:idRaza", async (req, res) => {
   try {
     const breeds = await getAllBreeds(); //traigo todas las razas
@@ -82,37 +54,90 @@ dogsRouter.get("/:idRaza", async (req, res) => {
 });
 
 dogsRouter.post("/", async (req, res) => {
-  const { name, height, weight, life_span, image, temperaments } = req.body;
-  if (!name || !height || !weight)
+  const { name, height, weight, life_span, image, temperaments, password } =
+    req.body;
+  if (!name || !height || !weight || !password)
     return res.status(400).send("Faltan datos necesarios"); //Si no me mandan algo de esto la raza no se crea
   try {
-    const newBreed = await Dog.create({ //Creo la raza
+    const newBreed = await Dog.create({
+      //Creo la raza
       name,
       height,
       weight,
       life_span,
       image,
+      password,
     });
-    const breedTemper = await Temperament.findAll({ //Traigo las instancias de temperamentos que coincidan con los pasados
+    const breedTemper = await Temperament.findAll({
+      //Traigo las instancias de temperamentos que coincidan con los pasados
       where: { name: temperaments },
     });
     await newBreed.addTemperament(breedTemper); //Relaciono mi nueva raza con cada temperamento
-    res.status(200).send(newBreed); 
+    res.status(200).send(newBreed);
   } catch (error) {
+    console.log(error);
     res.status(400).send("Algo fallo, estoy en post a /dog");
   }
 });
 
-dogsRouter.delete('/delete/:id', async (req,res)=>{
-  const {id} = req.params; //Recibo un id por params
-  try{
-    const deletedBreed = await Dog.findByPk(id) //Busco alguna raza que coincida
-    await deletedBreed.destroy() //La elimino
-    res.status(200).send('La raza se elimino correctamente')
-  } catch(error){
-    res.status(400).send('No se pudo eliminar la raza')
+dogsRouter.delete("/delete/:id", async (req, res) => {
+  const { id } = req.params; //Recibo un id por params
+  try {
+    const deletedBreed = await Dog.findByPk(id); //Busco alguna raza que coincida
+    await deletedBreed.destroy(); //La elimino
+    res.status(200).send("La raza se elimino correctamente");
+  } catch (error) {
+    res.status(400).send("No se pudo eliminar la raza");
   }
+});
 
-})
+dogsRouter.put("/update/:id", async (req, res) => {
+  const updateBreed = { ...req.body }; //Recibo por body los datos
+  const { id } = req.params; //Me guardo el id de la raza a actualizar
+  try {
+    const oldBreed = await Dog.findByPk(id); //Busco la instancia de la raza
+
+    if (oldBreed.dataValues.password !== updateBreed.password)
+      return res.status(400).send("Contraseña invalida"); //verifico la contrasña
+
+    const formatUpdateBreed = {
+      name: updateBreed.name ? updateBreed.name : oldBreed.dataValues.name,
+      height: updateBreed.height
+        ? updateBreed.height
+        : oldBreed.dataValues.height,
+      weight: updateBreed.weight
+        ? updateBreed.weight
+        : oldBreed.dataValues.weight,
+      life_span: updateBreed.life_span
+        ? updateBreed.life_span
+        : oldBreed.dataValues.life_span,
+      password: oldBreed.dataValues.password,
+    };
+
+    if (!updateBreed.temperaments || updateBreed.temperaments.length === 0) {
+      const breedsDb = await getDbBreedsOnly();
+      const oldBreedTemperaments = breedsDb
+        .find((b) => b.id === id)
+        .temperament.split(", "); //Busco los temperamentos antiguos
+      console.log(oldBreedTemperaments);
+      const temperaments = await Temperament.findAll({
+        where: { name: oldBreedTemperaments },
+      });
+      await oldBreed.update(formatUpdateBreed);
+      await oldBreed.setTemperaments(temperaments);
+      return res.send("Raza actualizada!");
+    }
+    const updateBreedTemperaments = updateBreed.temperaments;
+    const temperaments = await Temperament.findAll({
+      where: { name: updateBreedTemperaments },
+    });
+    await oldBreed.update(formatUpdateBreed);
+    await oldBreed.setTemperaments(temperaments);
+    res.send("Raza actualizada!");
+  } catch (error) {
+    console.log(error);
+    res.status(400).send("Algo fallo en put a update");
+  }
+});
 
 module.exports = dogsRouter;
