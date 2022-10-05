@@ -14,6 +14,7 @@ function App() {
         <Route path='/home' component={Home}/>
         <Route path='/breedCreate' component={BreedCreate}/>
         <Route path='/detail/:id' component={Detail}/>
+        <Route path='/update/:id' component={BreedCreate}/>
       </Switch>
       </div>
     </BrowserRouter>

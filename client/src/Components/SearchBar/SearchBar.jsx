@@ -2,6 +2,7 @@ import react from "react";
 import { getBreedsByName } from "../../Actions";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import './SearchBar.css'
 
 export default function SearchBar({page}) {
   const dispatch = useDispatch();
@@ -19,13 +20,14 @@ export default function SearchBar({page}) {
   }
 
   return (
-    <div>
+    <div className="searchContainer">
       <input
+        className="searchInput"
         value={input}
         onChange={(e) => handleInput(e)}
         placeholder="Ingrese busqueda"
       />
-      <button onClick={(e) => handleClick(e)}>Search</button>
+      <button className="searchBtn" onClick={(e) => handleClick(e)}>Search</button>
     </div>
   );
 }

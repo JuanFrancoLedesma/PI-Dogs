@@ -10,7 +10,7 @@ import "./Detail.css";
 export default function Breed() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getBreedById(id));
@@ -19,10 +19,10 @@ export default function Breed() {
 
   const breed = useSelector((state) => state.breed);
 
-  function deleted(e,id){
+  function deleted(e, id) {
     e.preventDefault();
-    dispatch(breedDelete(id))
-    setTimeout(()=>history.push('/home'),1000)
+    dispatch(breedDelete(id));
+    setTimeout(() => history.push("/home"), 1000);
   }
 
   return (
@@ -34,13 +34,20 @@ export default function Breed() {
       </div>
       <div className="card">
         {breed.createdByUser ? (
-          <button onClick={(e)=>{deleted(e,breed.id)}}>Delete</button>
+          <button
+            onClick={(e) => {
+              deleted(e, breed.id);
+            }}
+          >
+            Delete
+          </button>
         ) : (
           <button disabled="true">Delete</button>
         )}
         {
-          
+          breed.createdByUser ? <Link to={`/update/${breed.id}`}><button>Update</button></Link> : <button disabled='true'>Update</button>
         }
+
         <Card
           id={breed.id} //Para enviar un posible delete
           createdByUser={breed.createdByUser} //Para luego usarlo como condicion de renderizado

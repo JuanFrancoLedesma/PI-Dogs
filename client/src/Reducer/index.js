@@ -9,6 +9,7 @@ import {
   BREED_CREATE,
   GET_BREED_BY_ID,
   BREED_DELETE,
+  BREED_UPDATE,
 } from "../Actions/Action_type";
 
 const initialState = {
@@ -117,6 +118,10 @@ function rootReducer(state = initialState, action) {
         ...state,
       };
     case BREED_DELETE:
+      return {
+        ...state,
+      };
+    case BREED_UPDATE:
       return {
         ...state,
       };

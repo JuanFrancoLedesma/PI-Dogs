@@ -9,6 +9,7 @@ import {
   FILTER_ALF,
   GET_BREED_BY_ID,
   BREED_DELETE,
+  BREED_UPDATE,
 } from "./Action_type";
 
 export function getBreeds() {
@@ -125,7 +126,7 @@ export function breedCreate(payload) {
 export function breedDelete(id) {
   return async function(dispatch) {
     try{
-      const response = await axios.delete("http://localhost:3001/dogs/delete"+'/'+id); //Esto elimina la raza de la base de datos, puff, ya no esta mas
+      const response = await axios.delete(`http://localhost:3001/dogs/delete/${id}`); //Esto elimina la raza de la base de datos, puff, ya no esta mas
       alert('Raza eliminada correctamente!')
       return{
         type: BREED_DELETE
@@ -134,6 +135,20 @@ export function breedDelete(id) {
       alert('No se pudo eliminar la raza!')
     }
   }
+}
+
+export function breedUpdate(id,update){
+  return async function(dispatch){
+    try{
+      const response = await axios.put(`http://localhost:3001/dogs/update/${id}`,update)
+      alert(response.data)
+      return {
+        type: BREED_UPDATE
+      }
+    } catch(error){
+      alert('No se pudo actualizar la raza')
+    }
+  } 
 }
 
 

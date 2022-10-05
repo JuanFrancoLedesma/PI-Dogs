@@ -12,21 +12,20 @@ import {
 import { Link } from "react-router-dom";
 import Page from "../Page/Page";
 import SearchBar from "../SearchBar/SearchBar";
-import "./Home.css";
+import "./HomePlus.css";
+import HomeCard from "../HomeCard/HomeCard";
 
 export default function Home() {
   const dispatch = useDispatch(); //Me permite utilizar dispatch
   const allBreeds = useSelector((state) => state.breeds); //Me traigo del estado global el array breeds. Reemplaza el mapStateToProps
-  const error = useSelector((state) => state.error); 
+  const error = useSelector((state) => state.error);
   const allTemperaments = useSelector((state) => state.temperaments); //Me traigo del estado global mi array de temperamentos
-  const [orden, setOrden] = useState(""); //Estado que sirve para que el useEFfect vuelva a renderizar 
+  const [orden, setOrden] = useState(""); //Estado que sirve para que el useEFfect vuelva a renderizar
 
   useEffect(() => {
     dispatch(getBreeds()); //reemplaza el mapDispatchToProps. En cuanto renderice el componente, se despacha la action que llena mi estado global. El cual me traje con las lineas de arriba.
     dispatch(getTemperaments());
   }, []);
-
-
 
   const [currentPage, setCurrentPage] = useState(1);
   const [breedsPerPage, setBreedsPerPage] = useState(8);
@@ -76,111 +75,146 @@ export default function Home() {
   }
 
   return (
-    <div className="container">
-      <div className="encabezado">
-        <div className="tittle">
-          <h1>Henry Dogs</h1>
-        </div>
-        <div className="search">
-          <Link to="/breedCreate">
-            <button>Crear raza</button>
-          </Link>
-          <SearchBar page={page} />
-        </div>
+    <div className="homeContainer">
+      <div className="tittle">
+        <h1>H</h1>
+        <h1>E</h1>
+        <h1>N</h1>
+        <h1>R</h1>
+        <h1>Y</h1>
+        <h1> </h1>
+        <h1>D</h1>
+        <h1>O</h1>
+        <h1>G</h1>
+        <h1>S</h1>
       </div>
-      <div className="cuerpo">
-        <div className="filtros">
-          <div className="subtitulo">
-            <h2>Filtrado</h2>
+      <div className="subContainer">
+        <div className="encabezado">
+          <div className="filtrosContainer">
+            {/* Filtro por temperamentos */}
+            <div className="filtro">
+              <select onChange={(e) => handleTemperamentFilter(e)}>
+                <option value="default">Temperamentos</option>
+                <option value="all">Todos</option>
+                {allTemperaments?.map((t, i) => {
+                  return (
+                    <option value={t} key={i}>
+                      {t}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <div className="filtro">
+              {/* Filtro por creacion */}
+              <select onChange={(e) => handleCreatedFilter(e)}>
+                <option key="0" value="default">
+                  Origen
+                </option>
+                <option key="1" value="all">
+                  All
+                </option>
+                <option key="2" value="created">
+                  Created by user
+                </option>
+                <option key="3" value="api">
+                  Api
+                </option>
+              </select>
+              <i></i>
+            </div>
+            <div className="filtro">
+              {/* Filtro por peso */}
+              <select onChange={(e) => handleWeightFilter(e)}>
+                <option key="4" value="all">
+                  Peso
+                </option>
+                <option key="5" value="asc">
+                  Ascendente
+                </option>
+                <option key="6" value="desc">
+                  Descendente
+                </option>
+              </select>
+            </div>
+            <div className="filtro">
+              {/* Filtro alfabetico */}
+              <select onChange={(e) => handleAlfFilter(e)}>
+                <option key="7" value="all">
+                  Alfabeticamente
+                </option>
+                <option key="8" value="AZ">
+                  A-Z
+                </option>
+                <option key="9" value="ZA">
+                  Z-A
+                </option>
+              </select>
+            </div>
+            <button onClick={(e) => handleClick(e)}>
+              <img
+                src="https://us.123rf.com/450wm/jpgon/jpgon1704/jpgon170400954/76708517-ilustraci%C3%B3n-de-una-gota-de-agua-de-arte-de-l%C3%ADnea-aislada-con-una-cabeza-de-perro.jpg"
+                alt="Refresh"
+                height="50px"
+              />
+            </button>
           </div>
-          {/* Filtro por temperamentos */}
-          <div>
-            <select onChange={(e) => handleTemperamentFilter(e)}>
-              <option value='default'>Temperamentos</option>
-              <option value="all">Todos</option>
-              {allTemperaments?.map((t, i) => {
-                return (
-                  <option value={t} key={i}>
-                    {t}
-                  </option>
-                );
-              })}
-            </select>
+          <div className="search">
+            <div className="btnContainer">
+              <Link to="/breedCreate">
+                <button className="createBtn">Crear raza</button>
+              </Link>
+            </div>
+            <SearchBar page={page} />
           </div>
-          <div>
-            {/* Filtro por creacion */}
-            <select onChange={(e) => handleCreatedFilter(e)}>
-              <option key='0' value='default'>Origen</option>
-              <option key='1' value="all">All</option>
-              <option key='2' value="created">Created by user</option>
-              <option key='3' value="api">Api</option>
-            </select>
-            <i></i>
-          </div>
-          <div className="subtitulo">
-            <h2>Ordenado</h2>
-          </div>
-          <div>
-            {/* Filtro por peso */}
-            <select onChange={(e) => handleWeightFilter(e)}>
-              <option key='4' value="all">Peso</option>
-              <option key='5' value="asc">Ascendente</option>
-              <option key='6' value="desc">Descendente</option>
-            </select>
-          </div>
-          <div>
-            {/* Filtro alfabetico */}
-            <select onChange={(e) => handleAlfFilter(e)}>
-              <option key='7' value="all">Alfabeticamente</option>
-              <option key='8' value="AZ">A-Z</option>
-              <option key='9' value="ZA">Z-A</option>
-            </select>
-          </div>
-          <button onClick={(e) => handleClick(e)}>
-            Volver a cargar todas las razas
-          </button>
         </div>
-        <div className="muestra">
-          <div className="tarjetas">
-            {console.log('estado de error: ',error)}
+        <div className="mostrador">
             {error && showError(error)}
             {currentBreeds?.map((e) => {
-              //renderizado condicional
               return (
-                <div className="breed">
-                  <img
-                    src={
-                      e.image
-                        ? e.image
-                        : "https://img.freepik.com/foto-gratis/labrador-retriever_95678-27.jpg?w=2000"
-                    }
-                    width="150px"
-                    height="150px"
-                  />
-                  <div className="texto">
-                    <div className="link">
-                      <Link
-                        className="linkedin"
-                        key={e.id}
-                        to={`/detail/${e.id}`}
-                      >
-                        <h3>{e.name}</h3>
-                      </Link>
-                    </div>
-                    <h3>{e.temperament}</h3>
-                  </div>
-                </div>
+                <HomeCard
+                  image={
+                    e.image
+                      ? e.image
+                      : "https://img.freepik.com/foto-gratis/labrador-retriever_95678-27.jpg?w=2000"
+                  }
+                  name={e.name}
+                  id={e.id}
+                />
               );
+              //renderizado condicional
+              // return (
+              //   <div className="breed">
+              //     <img
+              //       src={
+              //         e.image
+              //           ? e.image
+              //           : "https://img.freepik.com/foto-gratis/labrador-retriever_95678-27.jpg?w=2000"
+              //       }
+              //     />
+              //     <div className="texto">
+              //       <div className="link">
+              //         <Link
+              //           className="linkedin"
+              //           key={e.id}
+              //           to={`/detail/${e.id}`}
+              //         >
+              //           <h3>{e.name}</h3>
+              //         </Link>
+              //       </div>
+              //       <h3>{e.temperament}</h3>
+              //     </div>
+              //   </div>
+              // );
             })}
-          </div>
-          <div className="page">
-            <Page
-              breedsPerPage={breedsPerPage}
-              allBreeds={allBreeds.length}
-              page={page}
-              current={currentPage}
-            />
-          </div>
+        </div>
+        <div className="paginado">
+          <Page
+            breedsPerPage={breedsPerPage}
+            allBreeds={allBreeds.length}
+            page={page}
+            current={currentPage}
+          />
         </div>
       </div>
     </div>
