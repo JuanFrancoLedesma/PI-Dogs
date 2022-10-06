@@ -15,7 +15,7 @@ import {
 export function getBreeds() {
   return async function (dispatch) {
     try {
-      const breeds = await axios.get("http://localhost:3001/dogs");
+      const breeds = await axios.get("/dogs");
       return dispatch({
         type: GET_BREEDS,
         payload: breeds.data,
@@ -32,7 +32,7 @@ export function getBreeds() {
 export function getBreedsByName(name) {
   return async function (dispatch) {
     try {
-      const breeds = await axios.get(`http://localhost:3001/dogs?name=${name}`);
+      const breeds = await axios.get(`/dogs?name=${name}`);
       return dispatch({
         type: GET_BREEDS_BY_NAME,
         payload: breeds.data,
@@ -49,7 +49,7 @@ export function getBreedsByName(name) {
 export function getBreedById(id){
   return async function(dispatch) {
     try{
-      const breed = await axios.get(`http://localhost:3001/dogs/${id}`)
+      const breed = await axios.get(`/dogs/${id}`)
       return dispatch({
         type: GET_BREED_BY_ID,
         payload: breed.data
@@ -67,7 +67,7 @@ export function getTemperaments() {
   return async function (dispatch) {
     try {
       const temperaments = await axios.get(
-        "http://localhost:3001/temperaments"
+        "/temperaments"
       );
       return dispatch({
         type: GET_TEMPERAMENTS,
@@ -113,7 +113,7 @@ export function filterByAlf(payload) {
 export function breedCreate(payload) {
   return async function (dispatch) {
     try {
-      const response = await axios.post("http://localhost:3001/dogs", payload);
+      const response = await axios.post("/dogs", payload);
       alert('Raza creada exitosamente!')
       return response
     } catch (error) {
@@ -126,7 +126,7 @@ export function breedCreate(payload) {
 export function breedDelete(id) {
   return async function(dispatch) {
     try{
-      const response = await axios.delete(`http://localhost:3001/dogs/delete/${id}`); //Esto elimina la raza de la base de datos, puff, ya no esta mas
+      const response = await axios.delete(`/dogs/delete/${id}`); //Esto elimina la raza de la base de datos, puff, ya no esta mas
       alert('Raza eliminada correctamente!')
       return{
         type: BREED_DELETE
@@ -140,7 +140,7 @@ export function breedDelete(id) {
 export function breedUpdate(id,update){
   return async function(dispatch){
     try{
-      const response = await axios.put(`http://localhost:3001/dogs/update/${id}`,update)
+      const response = await axios.put(`/dogs/update/${id}`,update)
       alert(response.data)
       return {
         type: BREED_UPDATE
