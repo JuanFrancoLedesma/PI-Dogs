@@ -3,33 +3,49 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background-image: url("../../Images/fondo.jpg");
+  background-image: url("../../images/fondo.jpg");
   background-size: cover;
   min-height: 100vh;
   min-width: 100vh;
 }
 
 .tittleLanding{
-  margin-bottom: 100px;
-  font-family: "Quicksand", sans-serif;
+  margin-bottom: 200px;
+  font-family: "sans-serif";
+  font-size: 3em;
+  color: rgb(245, 239, 239);
 }
 
 .button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   background-color: f0f0f0;
   border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   width: 200px;
   height: 42px;
-  font-family: "Quicksand", sans-serif;
-  font-size: 1em;
+  font-family: "sans-serif";
+  font-size: 20px;
   transition: all 0.25s ease;
+  margin-bottom: 150px;
+  cursor: pointer;
 }
 
 .button:hover {
-  background: rgba(48, 48, 236, 0.76);
+  width: 210px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.76);
+  font-size: 2em;
 
 }
 
 .button:active {
   box-shadow: 0px 0px 3px black inset;
+}
+
+.linkto{
+  text-decoration: none;
 }

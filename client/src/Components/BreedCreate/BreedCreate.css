@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: url("../../Images/createbreed.jpg");
+  background: url("../../images/createbreed.jpg");
   background-size: cover;
   min-height: 100vh;
   min-width: 100vh;
@@ -15,7 +15,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(102, 158, 243, 0.658);
 }
 
 .backbtn {
@@ -25,11 +24,12 @@
   background-color: f0f0f0;
   border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 12px;
-  width: 200px;
+  width: 150px;
   height: 42px;
-  font-family: "Quicksand", sans-serif;
-  font-size: 1em;
+  font-family: "sans-serif";
+  font-size: 25px;
   transition: all 0.25s ease;
+  cursor: pointer;
 }
 
 .backbtn button:hover {
@@ -63,7 +63,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.568);
   border-radius: 18px;
 }
 
@@ -71,6 +71,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
   justify-content: center;
   margin: 10px;
 }
@@ -79,11 +80,14 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 200px;
+  width: 28%;
   height: 30px;
-  font-family: "Quicksand", sans-serif;
+  font-family: "sans-serif";
   font-size: 20px;
   font-weight: bold;
+  background-color: #f0f0f0c0;
+  border-radius: 15px;
+  padding-left: 5px;
 }
 
 .entrada select {
@@ -96,7 +100,7 @@
   background: #f0f0f0;
   font-size: 1em;
   color: rgb(70, 69, 69);
-  font-family: "Quicksand", sans-serif;
+  font-family: "sans-serif";
   border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   position: relative;
@@ -109,9 +113,9 @@
 }
 
 .inputsimple {
-  width: 470px;
+  width: 71%;
   height: 30px;
-  font-family: "Quicksand", sans-serif;
+  font-family: "sans-serif";
   font-size: 15px;
   border-radius: 12px;
   color: white;
@@ -121,7 +125,7 @@
 .inputdoble {
   width: 230px;
   height: 30px;
-  font-family: "Quicksand", sans-serif;
+  font-family: "sans-serif";
   font-size: 15px;
   border-radius: 12px;
   color: white;
@@ -129,11 +133,11 @@
 }
 
 .error {
-  font-family: "Quicksand", sans-serif;
+  font-family: "sans-serif";
   font-size: 20px;
   font-weight: bold;
-  color: rgba(54, 245, 252, 0.822);
-  text-shadow: #202020;
+  text-decoration:underline;
+  color: rgb(240, 0, 0);
 }
 
 .temperament_submit {
@@ -162,7 +166,7 @@
 .linea label {
 
   width: 200px;
-  font-family: "Quicksand", sans-serif;
+  font-family: "sans-serif";
   font-size: 20px;
   font-weight: bold;
   color: white;
@@ -176,9 +180,10 @@
   border-radius: 12px;
   width: 100px;
   height: 30px;
-  font-family: "Quicksand", sans-serif;
+  font-family: "sans-serif";
   font-size: 1em;
   transition: all 0.25s ease;
+  cursor: pointer;
 }
 
 .linea button:hover{
@@ -196,8 +201,9 @@
   font-family: "Quicksand", sans-serif;
   font-size: 20px;
   font-weight: bold;
-  color: rgba(54, 245, 252, 0.822);
+  color: rgba(255, 0, 0, 0.973);
   text-shadow: #202020;
+  text-decoration: underline;
 }
 
 .submitbtn button{
@@ -209,6 +215,7 @@
   font-family: "Quicksand", sans-serif;
   font-size: 1em;
   transition: all 0.25s ease;
+  cursor: pointer;
 }
 
 .submitbtn button:hover{

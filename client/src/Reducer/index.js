@@ -13,11 +13,14 @@ import {
 } from "../Actions/Action_type";
 
 const initialState = {
+  inicio: false,
+  aux: false,
   breeds: [],
   allBreeds: [], //copia de seguridad
   breed: [],
   temperaments: [],
   error: false,
+ 
 };
 
 function rootReducer(state = initialState, action) {
@@ -25,9 +28,11 @@ function rootReducer(state = initialState, action) {
     case GET_BREEDS:
       return {
         ...state,
+        inicio: true,
         breeds: action.payload,
         allBreeds: action.payload,
         error: false,
+        aux: true
       };
     case GET_TEMPERAMENTS: {
       return {
@@ -39,9 +44,8 @@ function rootReducer(state = initialState, action) {
       if (action.payload === "default") return { ...state };
       const filterBreeds = //Aca me guardo las razas filtradas segun el estado actual de mi filtro
         action.payload === "created"
-          ? state.allBreeds.filter((b) => b.createdByUser)
-          : state.allBreeds.filter((b) => !b.createdByUser);
-
+          ? state.breeds.filter((b) => b.createdByUser)
+          : state.breeds.filter((b) => !b.createdByUser);
       return {
         ...state,
         breeds: action.payload === "all" ? state.allBreeds : filterBreeds,
@@ -50,7 +54,7 @@ function rootReducer(state = initialState, action) {
     }
     case FILTER_TEMPERAMENT:
       if (action.payload === "default") return { ...state };
-      const filterBreeds = state.allBreeds.filter((b) =>
+      const filterBreeds = state.breeds.filter((b) =>
         b.temperament?.includes(action.payload)
       );
       return {

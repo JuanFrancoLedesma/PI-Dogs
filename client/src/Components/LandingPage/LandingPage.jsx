@@ -4,15 +4,15 @@ import "./LandingPage.css";
 
 export default function LandingPage() {
   return (
-    <div>
-      <div className="contein">
+    <div className="contein">
+      <div>
         <div className="tittleLanding">
-          <h1>Welcome to Dogs PI</h1>
+          <h1>D O G S</h1>
         </div>
-        <Link to="/home">
-          <button className="button">Ingresar</button>
-        </Link>
       </div>
+      <Link className="linkto" to="/home">
+        <button className="button">Ingresar</button>
+      </Link>
     </div>
   );
 }

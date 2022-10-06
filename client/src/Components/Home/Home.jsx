@@ -15,10 +15,16 @@ import SearchBar from "../SearchBar/SearchBar";
 import "./HomePlus.css";
 import HomeCard from "../HomeCard/HomeCard";
 
+import x from "../../images/x.gif";
+import perroBlanco from "../../images/perroBlanco.gif";
+import perro from "../../images/perro.gif";
+
 export default function Home() {
   const dispatch = useDispatch(); //Me permite utilizar dispatch
   const allBreeds = useSelector((state) => state.breeds); //Me traigo del estado global el array breeds. Reemplaza el mapStateToProps
   const error = useSelector((state) => state.error);
+  const inicio = useSelector((state) => state.inicio);
+  const aux = useSelector((state) => state.aux);
   const allTemperaments = useSelector((state) => state.temperaments); //Me traigo del estado global mi array de temperamentos
   const [orden, setOrden] = useState(""); //Estado que sirve para que el useEFfect vuelva a renderizar
 
@@ -43,9 +49,33 @@ export default function Home() {
     dispatch(getBreeds());
   }
 
+  const loadingGif = require("../../images/perro.gif");
+
   function showError(error) {
     //Muestra error
-    return <h1>{error}</h1>;
+    return (
+      <div className="homeError">
+        <h1>{error}</h1>
+        <img src={x} alt="Cargando..." />
+      </div>
+    );
+  }
+
+  function loading() {
+    return (
+      <div className="loading">
+        <img src={perroBlanco} alt="Loading..." />
+      </div>
+    );
+  }
+
+  function notFound() {
+    return (
+      <div className="loading">
+        <img src={perro} alt="Loading..." />
+        <h1>Ninguna raza cumple esas condiciones! Refresca!</h1>
+      </div>
+    );
   }
 
   function handleCreatedFilter(e) {
@@ -169,44 +199,21 @@ export default function Home() {
           </div>
         </div>
         <div className="mostrador">
-            {error && showError(error)}
-            {currentBreeds?.map((e) => {
-              return (
-                <HomeCard
-                  image={
-                    e.image
-                      ? e.image
-                      : "https://img.freepik.com/foto-gratis/labrador-retriever_95678-27.jpg?w=2000"
-                  }
-                  name={e.name}
-                  id={e.id}
-                />
-              );
-              //renderizado condicional
-              // return (
-              //   <div className="breed">
-              //     <img
-              //       src={
-              //         e.image
-              //           ? e.image
-              //           : "https://img.freepik.com/foto-gratis/labrador-retriever_95678-27.jpg?w=2000"
-              //       }
-              //     />
-              //     <div className="texto">
-              //       <div className="link">
-              //         <Link
-              //           className="linkedin"
-              //           key={e.id}
-              //           to={`/detail/${e.id}`}
-              //         >
-              //           <h3>{e.name}</h3>
-              //         </Link>
-              //       </div>
-              //       <h3>{e.temperament}</h3>
-              //     </div>
-              //   </div>
-              // );
-            })}
+          {!inicio && loading()}
+          {error && showError(error) || !aux || !allBreeds.length && notFound()}
+          {currentBreeds?.map((e) => {
+            return (
+              <HomeCard
+                image={
+                  e.image
+                    ? e.image
+                    : "https://img.freepik.com/foto-gratis/labrador-retriever_95678-27.jpg?w=2000"
+                }
+                name={e.name}
+                id={e.id}
+              />
+            );
+          })}
         </div>
         <div className="paginado">
           <Page
