@@ -49,7 +49,6 @@ export default function Home() {
     dispatch(getBreeds());
   }
 
-  const loadingGif = require("../../images/perro.gif");
 
   function showError(error) {
     //Muestra error
