@@ -15,9 +15,9 @@ import SearchBar from "../SearchBar/SearchBar";
 import "./HomePlus.css";
 import HomeCard from "../HomeCard/HomeCard";
 
-import x from "../../images/x.gif";
-import perroBlanco from "../../images/perroBlanco.gif";
-import perro from "../../images/perro.gif";
+import x from "../../Imagenes/x.gif";
+import perroBlanco from "../../Imagenes/perroBlanco.gif";
+import perro from "../../Imagenes/perro.gif";
 
 export default function Home() {
   const dispatch = useDispatch(); //Me permite utilizar dispatch
