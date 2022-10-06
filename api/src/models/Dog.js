@@ -29,13 +29,15 @@ module.exports = (sequelize) => {
     image: {
       type: DataTypes.STRING,
       allowNull: true,
-      // defaultValue: 'www.algunaimagendeperro.com'
-      // defaultValue: 'https://us.123rf.com/450wm/krisdog/krisdog1808/krisdog180800609/107313215-perro-silueta-animal-dom%C3%A9stico.jpg?ver=6'
     },
     createdByUser: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
+    },
+    password : {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   },{
     timestamps: false

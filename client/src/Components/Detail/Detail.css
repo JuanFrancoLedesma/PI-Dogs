@@ -1,0 +1,54 @@
+.detailContainer {
+  background: url("../../images/perroFeliz.jpg");
+  background-size: cover;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+
+
+.detailbtn button {
+  margin: 10px;
+  height: 40px;
+  width: 140px;
+  background-color: f0f0f0;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  font-family: "sans-serif";
+  font-size: 1.5em;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.detailbtn button:hover {
+  background-color: rgb(230, 94, 45);
+}
+
+.card {
+  margin-left: 250px;
+}
+
+.card button{
+  height: 30px;
+  width: 100px;
+  margin-right: 10px;
+  background-color: f0f0f0;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  font-family: "sans-serif";
+  font-size: 1em;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.card button:hover{
+  background: rgba(219, 0, 0, 0.877);
+  color: white;
+}
+
+.card button:active{
+  box-shadow: 0px 0px 3px black inset;
+}

@@ -1,30 +1,33 @@
 import react from "react";
 import { getBreedsByName } from "../../Actions";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import './SearchBar.css'
 
-export default function SearchBar() {
+export default function SearchBar({page}) {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
 
   function handleInput(e) {
     setInput(e.target.value);
+    page(1)
   }
 
   function handleClick(e) {
     e.preventDefault();
     dispatch(getBreedsByName(input));
-    setInput('')
+    setInput("");
   }
 
   return (
-    <div>
+    <div className="searchContainer">
       <input
+        className="searchInput"
         value={input}
         onChange={(e) => handleInput(e)}
         placeholder="Ingrese busqueda"
       />
-      <button onClick={(e) => handleClick(e)}>Search</button>
+      <button className="searchBtn" onClick={(e) => handleClick(e)}>Search</button>
     </div>
   );
 }

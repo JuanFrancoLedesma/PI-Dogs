@@ -1,5 +1,7 @@
 body {
-  background: url('./Images/csgo.jpg');
+  /* background: url('./Images/fondo.jpg');
+  background-size: 100%;
+  background-attachment: fixed; */
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

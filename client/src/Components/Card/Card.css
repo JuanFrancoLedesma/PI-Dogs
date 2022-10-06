@@ -1,0 +1,64 @@
+.cardContainer {
+  display: flex;
+  width: 60%;
+  min-width: 300px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.247);
+  padding: 10px;
+  transition: all 0.25s ease;
+  border-radius: 5px;
+}
+
+.cardTitle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cardTitle h2 {
+  font-family: "Quicksand", sans-serif;
+  color: black(0, 0, 255, 0.678);
+  text-align: left;
+  font-family: Comic Sans MS;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.cardImg {
+  padding: 10px;
+  border-radius: 7px;
+  background-color: rgba(165, 42, 42, 0.192);
+}
+
+.cardInfo {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10px;
+  margin-top: 10px;
+}
+
+.elemento {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.atributo{
+    display: flex;
+    padding-left: 10px;
+    width: 50%;
+}
+
+.info{
+    width: 50%;
+}
+
+.temperamentos {
+}

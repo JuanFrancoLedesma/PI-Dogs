@@ -1,0 +1,229 @@
+.BreedCreate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url("../../images/createbreed.jpg");
+  background-size: cover;
+  min-height: 100vh;
+  min-width: 100vh;
+  transition: all 0.25s ease;
+}
+
+.encab {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.backbtn {
+  margin-left: 20px;
+}
+.backbtn button {
+  background-color: f0f0f0;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  width: 150px;
+  height: 42px;
+  font-family: "sans-serif";
+  font-size: 25px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.backbtn button:hover {
+  background: rgba(0, 0, 255, 0.226);
+}
+
+.backbtn button:active {
+  box-shadow: 0px 0px 3px black inset;
+}
+
+.createTittle {
+  margin-right: 20px;
+  text-align: left;
+  font-family: Arial Black;
+  font-weight: bold;
+  font-size: 20px;
+  background: #202020;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.4),
+    0px -1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.form {
+  margin-top: 20px;
+  padding-bottom: 10px;
+  width: 52%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.568);
+  border-radius: 18px;
+}
+
+.entrada {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  margin: 10px;
+}
+
+.entrada label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 28%;
+  height: 30px;
+  font-family: "sans-serif";
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #f0f0f0c0;
+  border-radius: 15px;
+  padding-left: 5px;
+}
+
+.entrada select {
+  display: inline-block;
+  width: 50%;
+  cursor: pointer;
+  padding: 7px 10px;
+  height: 42px;
+  border-radius: 0;
+  background: #f0f0f0;
+  font-size: 1em;
+  color: rgb(70, 69, 69);
+  font-family: "sans-serif";
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.entrada select:hover {
+  background: rgba(0, 0, 255, 0.226);;
+  color: white;
+}
+
+.inputsimple {
+  width: 71%;
+  height: 30px;
+  font-family: "sans-serif";
+  font-size: 15px;
+  border-radius: 12px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.26);
+}
+
+.inputdoble {
+  width: 230px;
+  height: 30px;
+  font-family: "sans-serif";
+  font-size: 15px;
+  border-radius: 12px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.26);
+}
+
+.error {
+  font-family: "sans-serif";
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration:underline;
+  color: rgb(240, 0, 0);
+}
+
+.temperament_submit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.temperamentError {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.linea{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.linea label {
+
+  width: 200px;
+  font-family: "sans-serif";
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.26);
+}
+
+.linea button {
+  background-color: f0f0f0;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  width: 100px;
+  height: 30px;
+  font-family: "sans-serif";
+  font-size: 1em;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.linea button:hover{
+  background: rgba(161, 8, 3, 0.822);
+  color: white;
+} 
+
+.linea button:active{
+  box-shadow: 0px 0px 3px black inset;
+}
+
+
+.temperamentError p {
+  font-family: "Quicksand", sans-serif;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgba(255, 0, 0, 0.973);
+  text-shadow: #202020;
+  text-decoration: underline;
+}
+
+.submitbtn button{
+  background-color: f0f0f0;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  width: 100px;
+  height: 30px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1em;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.submitbtn button:hover{
+  background: rgba(18, 131, 18, 0.863);
+  color: white;
+}
+
+.submitbtn button:active{
+  box-shadow: 0px 0px 3px black inset;
+
+}

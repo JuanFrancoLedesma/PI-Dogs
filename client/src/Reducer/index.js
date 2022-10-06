@@ -6,13 +6,21 @@ import {
   FILTER_TEMPERAMENT,
   FILTER_WEIGHT,
   FILTER_ALF,
+  BREED_CREATE,
+  GET_BREED_BY_ID,
+  BREED_DELETE,
+  BREED_UPDATE,
 } from "../Actions/Action_type";
 
 const initialState = {
+  inicio: false,
+  aux: false,
   breeds: [],
   allBreeds: [], //copia de seguridad
+  breed: [],
   temperaments: [],
   error: false,
+ 
 };
 
 function rootReducer(state = initialState, action) {
@@ -20,8 +28,11 @@ function rootReducer(state = initialState, action) {
     case GET_BREEDS:
       return {
         ...state,
+        inicio: true,
         breeds: action.payload,
         allBreeds: action.payload,
+        error: false,
+        aux: true
       };
     case GET_TEMPERAMENTS: {
       return {
@@ -30,24 +41,26 @@ function rootReducer(state = initialState, action) {
       };
     }
     case FILTER_CREATED: {
+      if (action.payload === "default") return { ...state };
       const filterBreeds = //Aca me guardo las razas filtradas segun el estado actual de mi filtro
         action.payload === "created"
-          ? state.allBreeds.filter((b) => b.createdByUser)
-          : state.allBreeds.filter((b) => !b.createdByUser);
-          console.log(state.breeds);
-          console.log(state.allBreeds);
+          ? state.breeds.filter((b) => b.createdByUser)
+          : state.breeds.filter((b) => !b.createdByUser);
       return {
         ...state,
-        breeds: action.payload === "all" ? state.breeds : filterBreeds,
+        breeds: action.payload === "all" ? state.allBreeds : filterBreeds,
+        error: false,
       };
     }
     case FILTER_TEMPERAMENT:
-      const filterBreeds = state.allBreeds.filter((b) =>
+      if (action.payload === "default") return { ...state };
+      const filterBreeds = state.breeds.filter((b) =>
         b.temperament?.includes(action.payload)
       );
       return {
         ...state,
         breeds: action.payload === "all" ? state.allBreeds : filterBreeds,
+        error: false,
       };
     case FILTER_WEIGHT:
       let sortedArr =
@@ -65,6 +78,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         breeds: action.payload === "all" ? state.allBreeds : sortedArr,
+        error: false,
       };
     case FILTER_ALF:
       let sortArr =
@@ -82,6 +96,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         breeds: action.payload === "all" ? state.allBreeds : sortArr,
+        error: false,
       };
     case GET_BREEDS_BY_NAME:
       if (typeof action.payload === "string") {
@@ -95,6 +110,24 @@ function rootReducer(state = initialState, action) {
         ...state,
         error: false,
         breeds: action.payload,
+      };
+    case GET_BREED_BY_ID:
+      return {
+        ...state,
+        breed: action.payload,
+        error: false,
+      };
+    case BREED_CREATE:
+      return {
+        ...state,
+      };
+    case BREED_DELETE:
+      return {
+        ...state,
+      };
+    case BREED_UPDATE:
+      return {
+        ...state,
       };
     default:
       return {
